@@ -17,6 +17,7 @@ class UsersView(Resource):
     def post(self):
         req_json = request.json
         new_user = User(**req_json)
+        #new_user.get_hash()
 
         db.session.add(new_user)
         db.session.commit()
@@ -33,7 +34,7 @@ class UserView(Resource):
     def put(self, uid):
         req_json = request.json
         user = db.session.query(User).get(uid)
-        #user.id = req_json.get("id")
+        user.id = req_json.get("id")
         user.username = req_json.get("username")
         user.password = req_json.get("password")
         user.role = req_json.get("role")

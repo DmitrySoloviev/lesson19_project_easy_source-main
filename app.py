@@ -36,6 +36,10 @@ def create_data(app, db):
         u1 = User(username="vasya", password="my_little_pony", role="user")
         u2 = User(username="oleg", password="qwerty", role="user")
         u3 = User(username="oleg", password="P@ssw0rd", role="admin")
+        #u1.password = u1.password.User.get_hash()
+        #u2.password = u2.password.User.get_hash()
+        #u3.password = u3.password.User.get_hash()
+
 
         with db.session.begin():
             db.session.add_all([u1, u2, u3])

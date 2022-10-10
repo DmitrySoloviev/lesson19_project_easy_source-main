@@ -7,7 +7,6 @@ import datetime
 import calendar
 import jwt
 from constants import secret, algo
-import config
 
 auth_ns = Namespace('auth')
 
@@ -50,7 +49,7 @@ class AuthView(Resource):
         if refresh_token is None:
             abort(400)
         try:
-            data = jwt.decode(jwt=refresh_token, key=secret, algorithm=[algo])
+            data = jwt.decode(jwt=refresh_token, key=secret, algorithms=[algo])
         except Exception as e:
             abort(400)
 
