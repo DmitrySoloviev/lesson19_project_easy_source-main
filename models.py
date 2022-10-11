@@ -56,6 +56,10 @@ class User(db.Model):
     password = db.Column(db.String)
     role = db.Column(db.String)
 
+    def create_hash(self, passwrd):
+        passwrd = hashlib.md5(str(passwrd).encode('utf-8')).hexdigest()
+        return passwrd
+
     def get_hash(self):
         return hashlib.md5(self.password.encode('utf-8')).hexdigest()
 
@@ -66,3 +70,9 @@ class UserSchema(Schema):
     password = fields.Str()
     role = fields.Str()
 
+#User.create_hash(User, '123')
+"""
+def create_hash(passwrd):
+    passwrd = hashlib.md5(str(passwrd).encode('utf-8')).hexdigest()
+    return passwrd
+"""
